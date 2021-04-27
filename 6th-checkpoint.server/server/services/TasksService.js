@@ -1,17 +1,17 @@
 import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 
-class BoardsService {
+class TasksService {
   async getAll(id) {
-    return await dbContext.Boards.find({ creatorId: id })
+    return await dbContext.Tasks.find({ creatorId: id })
   }
 
   async create(body) {
-    return await dbContext.Boards.create(body)
+    return await dbContext.Tasks.create(body)
   }
 
   async delete(id) {
-    const data = await dbContext.Boards.findOneAndDelete({ _id: id })
+    const data = await dbContext.Tasks.findOneAndDelete({ _id: id })
     if (!data) {
       throw new BadRequest('Invalid ID')
     }
@@ -19,4 +19,4 @@ class BoardsService {
   }
 }
 
-export const boardsService = new BoardsService()
+export const tasksService = new TasksService()

@@ -2,8 +2,8 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 
 class ListsService {
-  async getAll(id) {
-    return await dbContext.Lists.find({ creatorId: id })
+  async getAll(query) {
+    return await dbContext.Lists.find(query)
   }
 
   async create(body) {

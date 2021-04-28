@@ -1,7 +1,7 @@
 <template>
   <div class="form-group">
     <div>
-      <h1>Splash Page</h1>
+      <h1>Login To Create Boards</h1>
     </div>
   </div>
 </template>
@@ -16,4 +16,5 @@
   align-items: center;
   justify-content: center;
 }
+
 </style>

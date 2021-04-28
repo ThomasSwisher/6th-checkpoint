@@ -2,8 +2,8 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 
 class TasksService {
-  async getAll(id) {
-    return await dbContext.Tasks.find({ creatorId: id })
+  async getAll(query) {
+    return await dbContext.Tasks.find(query)
   }
 
   async create(body) {

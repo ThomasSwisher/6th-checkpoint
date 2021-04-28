@@ -2,8 +2,8 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 
 class CommentsService {
-  async getAll(id) {
-    return await dbContext.Comments.find({ creatorId: id })
+  async getAll(query) {
+    return await dbContext.Comments.find(query)
   }
 
   async create(body) {

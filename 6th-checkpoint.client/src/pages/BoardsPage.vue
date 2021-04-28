@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="form-group ml-3 mt-3">
-      <form @submit.prevent="createList">
+      <form @submit.prevent="createBoard">
         <div class="form-group cust-form">
           <label for="title">Title</label>
           <input type="text"
@@ -9,51 +9,52 @@
                  name="title"
                  id="title"
                  placeholder="Title..."
-                 v-model="state.newList.title"
+                 v-model="state.newBoard.title"
           >
           <button class="btn btn-success" type="submit">
-            + List
+            + Board
           </button>
         </div>
       </form>
     </div>
     <div class="row">
-      <List v-for="l in state.lists" :key="l.id" :list-prop="l" />
-      <span @click="deleteList(list.id)">-</span>
+      <div class="col-12" v-for="board in state.boards" :key="board.id">
+        <router-link :to="{name: 'BoardPage', params: {id: board.id}}">
+          {{ board.title }} <span @click="deleteBoard(board.id)">-</span>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { computed, onMounted, reactive } from 'vue'
-import { listsService } from '../services/ListsService'
+import { boardsService } from '../services/BoardsService'
 import { AppState } from '../AppState'
-import { useRoute } from 'vue-router'
 
 export default {
-  name: 'Board',
+  name: 'Boards',
   setup() {
-    const route = useRoute()
     const state = reactive({
-      newList: {},
-      lists: computed(() => AppState.lists)
+      newBoard: {},
+      boards: computed(() => AppState.boards)
     })
     onMounted(async() => {
       try {
-        await listsService.getLists(route.params.id)
+        await boardsService.getBoards()
       } catch (error) {
         console.error(error)
       }
     })
 
     return {
-      async createList() {
-        await listsService.createList(state.newList)
+      async createBoard() {
+        await boardsService.createBoard(state.newBoard)
       },
       state,
-      async deleteList(id) {
+      async deleteBoard(id) {
         try {
-          await listsService.deleteList(id)
+          await boardsService.deleteBoard(id)
         } catch (error) {
           console.error(error)
         }

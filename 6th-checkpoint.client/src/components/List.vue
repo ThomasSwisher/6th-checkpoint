@@ -25,6 +25,7 @@ import { computed, onMounted, reactive } from 'vue'
 import { AppState } from '../AppState'
 import { listsService } from '../services/ListsService'
 import { useRoute } from 'vue-router'
+import { tasksService } from '../services/TasksService'
 export default {
   name: 'List',
   props: {
@@ -33,15 +34,16 @@ export default {
       required: true
     }
   },
-  setup() {
+  setup(props) {
     const route = useRoute()
     const state = reactive({
       newList: {},
-      lists: computed(() => AppState)
+      tasks: computed(() => AppState.tasks[props.listProp.id])
     })
     onMounted(async() => {
       try {
         await listsService.getLists(route.params.id)
+        await tasksService.getTasks(props.listProp.id)
       } catch (error) {
       }
     })

@@ -7,9 +7,10 @@ class TasksService {
     AppState.tasks.push(res.data)
   }
 
-  async getTasks(id) {
-    const res = await api.get(`/api/lists/${id}/tasks`)
-    AppState.tasks = res.data
+  async getTasks(listId) {
+    const res = await api.get(`/api/lists/${listId}/tasks`)
+    AppState.tasks[listId] = res.data
+    console.log(res.data)
   }
 
   async deleteTask(id) {

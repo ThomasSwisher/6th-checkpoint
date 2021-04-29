@@ -14,10 +14,8 @@
 </template>
 
 <script>
-import { computed, onMounted, reactive } from 'vue'
-import { AppState } from '../AppState'
+import { reactive } from 'vue'
 import { tasksService } from '../services/TasksService'
-import { useRoute } from 'vue-router'
 export default {
   name: 'Task',
   props: {
@@ -27,17 +25,10 @@ export default {
     }
   },
   setup() {
-    const route = useRoute()
     const state = reactive({
-      newTask: {},
-      tasks: computed(() => AppState)
+      newTask: {}
     })
-    onMounted(async() => {
-      try {
-        await tasksService.getTasks(route.params.id)
-      } catch (error) {
-      }
-    })
+
     return {
       async createTask() {
         await tasksService.createTask(state.newTask)

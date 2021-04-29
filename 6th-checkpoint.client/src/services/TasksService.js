@@ -4,7 +4,7 @@ import { api } from './AxiosService'
 class TasksService {
   async createTask(newTask) {
     const res = await api.post('/api/tasks', newTask)
-    AppState.tasks.push(res.data)
+    AppState.tasks[newTask.listId].push(res.data)
   }
 
   async getTasks(listId) {

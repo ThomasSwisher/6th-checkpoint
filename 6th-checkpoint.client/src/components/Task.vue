@@ -1,14 +1,12 @@
 <template>
-  <div class="car col-md-4 mb-3">
-    <div class="card shadow">
-      <div class="card-body">
-        <h4 class="card-title">
-          <button class="btn btn-danger" @click="deleteTask(taskProp.id)">
-            Delete
-          </button>
-          {{ taskProp.title }}
-        </h4>
-      </div>
+  <div class="col-md-4 mb-3">
+    <div class="shadow">
+      <button class="btn btn-danger" @click="deleteTask(taskProp.id)">
+        Delete
+      </button>
+    </div>
+    <div>
+      {{ taskProp.title }}
     </div>
   </div>
 </template>

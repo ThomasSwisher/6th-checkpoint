@@ -8,12 +8,23 @@
           </button>
           {{ listProp.title }}
         </h4>
+        <form @submit.prevent="createTask">
+          <div class="form-group cust-form">
+            <label for="title">Title</label>
+            <input type="text"
+                   class="form-control"
+                   name="title"
+                   id="title"
+                   placeholder="Title..."
+                   v-model="state.newTask.title"
+            >
+            <button class="btn btn-success" type="submit">
+              + List
+            </button>
+          </div>
+        </form>
         <div>
-          <ul>
-            <li>
-              <Task v-for="t in state.tasks" :key="t.id" :task-prop="t" />
-            </li>
-          </ul>
+          <Task v-for="t in state.tasks" :key="t.id" :task-prop="t" />
         </div>
       </div>
     </div>
@@ -37,7 +48,7 @@ export default {
   setup(props) {
     const route = useRoute()
     const state = reactive({
-      newList: {},
+      newTask: {},
       tasks: computed(() => AppState.tasks[props.listProp.id])
     })
     onMounted(async() => {
@@ -48,8 +59,10 @@ export default {
       }
     })
     return {
-      async createList() {
-        await listsService.createList(state.newList)
+      async createTask() {
+        state.newTask.listId = props.listProp.id
+        await tasksService.createTask(state.newTask)
+        state.newTask = {}
       },
       state,
       async deleteList(id) {

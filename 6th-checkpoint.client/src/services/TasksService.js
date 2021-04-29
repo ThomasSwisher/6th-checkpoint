@@ -1,4 +1,5 @@
 import { AppState } from '../AppState'
+
 import { api } from './AxiosService'
 
 class TasksService {
@@ -10,12 +11,11 @@ class TasksService {
   async getTasks(listId) {
     const res = await api.get(`/api/lists/${listId}/tasks`)
     AppState.tasks[listId] = res.data
-    console.log(res.data)
   }
 
-  async deleteTask(id) {
-    await api.delete('/api/tasks/' + id)
-    AppState.tasks = AppState.tasks.filter(b => b.id !== id)
+  async deleteTask(task) {
+    await api.delete('/api/tasks/' + task.id)
+    AppState.tasks[task.listId] = AppState.tasks[task.listId].filter(b => b.id !== task.id)
   }
 }
 

@@ -15,11 +15,11 @@
                    class="form-control"
                    name="title"
                    id="title"
-                   placeholder="Title..."
+                   placeholder="Task..."
                    v-model="state.newTask.title"
             >
             <button class="btn btn-success" type="submit">
-              + List
+              + Task
             </button>
           </div>
         </form>

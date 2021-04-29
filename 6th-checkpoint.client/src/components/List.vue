@@ -23,9 +23,7 @@
             </button>
           </div>
         </form>
-        <div>
-          <Task v-for="t in state.tasks" :key="t.id" :task-prop="t" />
-        </div>
+        <Task v-for="t in state.tasks" :key="t.id" :task-prop="t" />
       </div>
     </div>
   </div>

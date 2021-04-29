@@ -51,14 +51,7 @@ export default {
         await listsService.createList(state.newList)
         state.newList = {}
       },
-      state,
-      async deleteList(id) {
-        try {
-          await listsService.deleteList(id)
-        } catch (error) {
-          console.error(error)
-        }
-      }
+      state
     }
   }
 }

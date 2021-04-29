@@ -3,18 +3,11 @@
     <div class="card shadow">
       <div class="card-body">
         <h4 class="card-title">
-          <button class="btn btn-danger" @click="deleteList(listProp.id)">
+          <button class="btn btn-danger" @click="deleteTask(taskProp.id)">
             Delete
           </button>
-          {{ listProp.title }}
+          {{ taskProp.title }}
         </h4>
-        <div>
-          <ul>
-            <li>
-              <Task v-for="t in state.tasks" :key="t.id" :task-prop="t" />
-            </li>
-          </ul>
-        </div>
       </div>
     </div>
   </div>
@@ -23,12 +16,12 @@
 <script>
 import { computed, onMounted, reactive } from 'vue'
 import { AppState } from '../AppState'
-import { listsService } from '../services/ListsService'
+import { tasksService } from '../services/TasksService'
 import { useRoute } from 'vue-router'
 export default {
-  name: 'List',
+  name: 'Task',
   props: {
-    listProp: {
+    taskProp: {
       type: Object,
       required: true
     }
@@ -36,23 +29,23 @@ export default {
   setup() {
     const route = useRoute()
     const state = reactive({
-      newList: {},
-      lists: computed(() => AppState)
+      newTask: {},
+      tasks: computed(() => AppState)
     })
     onMounted(async() => {
       try {
-        await listsService.getLists(route.params.id)
+        await tasksService.getTasks(route.params.id)
       } catch (error) {
       }
     })
     return {
-      async createList() {
-        await listsService.createList(state.newList)
+      async createTask() {
+        await tasksService.createTask(state.newTask)
       },
       state,
-      async deleteList(id) {
+      async deleteTask(id) {
         try {
-          await listsService.deleteList(id)
+          await tasksService.deleteTask(id)
         } catch (error) {
           console.error(error)
         }

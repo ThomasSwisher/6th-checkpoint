@@ -16,11 +16,12 @@
         <span class="sr-only">Toggle Dropdown</span>
       </button>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Separated link</a>
+        <a class="dropdown-item"
+           v-for="l in state.lists"
+           :key="l.id"
+           :list-prop="l"
+           @click="changeList(l.id)"
+        >{{ l.title }}</a>
       </div>
     </div>
     <form @submit.prevent="createComment">
@@ -60,6 +61,7 @@ export default {
   },
   setup(props) {
     const state = reactive({
+      lists: computed(() => AppState.lists),
       newComment: {},
       comments: computed(() => AppState.comments[props.taskProp.id])
     })
@@ -76,6 +78,13 @@ export default {
       async deleteTask() {
         try {
           await tasksService.deleteTask(props.taskProp)
+        } catch (error) {
+          console.error(error)
+        }
+      },
+      async changeList(listId) {
+        try {
+          await tasksService.changeList(listId, props.taskProp)
         } catch (error) {
           console.error(error)
         }

@@ -42,4 +42,14 @@ export class TaskController extends BaseController {
       next(error)
     }
   }
+
+  async changeList(req, res, next) {
+    try {
+      req.body.id = req.params.id
+      const data = await tasksService.edit(req.body)
+      return res.send(data)
+    } catch (error) {
+      next(error)
+    }
+  }
 }

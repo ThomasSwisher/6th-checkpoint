@@ -2,6 +2,14 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 
 class TasksService {
+  async edit(body) {
+    const data = await dbContext.Tasks.findOneAndUpdate({ _id: body.id }, body, { new: true })
+    if (!data) {
+      throw new BadRequest('Invalid Id')
+    }
+    return data
+  }
+
   async getAll(query) {
     return await dbContext.Tasks.find(query)
   }

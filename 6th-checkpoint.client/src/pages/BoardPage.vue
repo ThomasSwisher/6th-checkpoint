@@ -19,7 +19,6 @@
     </div>
     <div class="row">
       <List v-for="l in state.lists" :key="l.id" :list-prop="l" />
-      <span @click="deleteList(list.id)">-</span>
     </div>
   </div>
 </template>
@@ -48,7 +47,9 @@ export default {
 
     return {
       async createList() {
+        state.newList.boardId = route.params.id
         await listsService.createList(state.newList)
+        state.newList = {}
       },
       state,
       async deleteList(id) {

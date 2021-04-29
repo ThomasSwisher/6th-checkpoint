@@ -20,8 +20,9 @@
     <div class="row">
       <div class="col-12" v-for="board in state.boards" :key="board.id">
         <router-link :to="{name: 'BoardPage', params: {id: board.id}}">
-          {{ board.title }} <span @click="deleteBoard(board.id)">-</span>
+          {{ board.title }}
         </router-link>
+        <span @click="deleteBoard(board.id)" class="delete">--</span>
       </div>
     </div>
   </div>
@@ -50,6 +51,7 @@ export default {
     return {
       async createBoard() {
         await boardsService.createBoard(state.newBoard)
+        state.newBoard = {}
       },
       state,
       async deleteBoard(id) {
@@ -78,5 +80,8 @@ export default {
   flex-direction: row;
   align-items: center;
   width: 500px;
+}
+.delete {
+  cursor: pointer;
 }
 </style>

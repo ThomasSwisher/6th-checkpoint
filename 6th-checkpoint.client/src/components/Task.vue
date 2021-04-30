@@ -73,6 +73,7 @@ export default {
       async createComment() {
         state.newComment.taskId = props.taskProp.id
         await commentsService.createComment(state.newComment)
+        state.newComment = {}
       },
       state,
       async deleteTask() {

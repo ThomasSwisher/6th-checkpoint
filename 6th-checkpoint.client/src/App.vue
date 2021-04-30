@@ -5,10 +5,10 @@
   <main>
     <router-view />
   </main>
-  <footer>
+  <!-- <footer>
     <div class="bg-dark text-light text-center p-4">
     </div>
-  </footer>
+  </footer> -->
 </template>
 
 <script>

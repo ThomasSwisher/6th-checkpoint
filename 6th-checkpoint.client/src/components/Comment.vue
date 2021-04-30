@@ -12,7 +12,8 @@
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { computed, reactive } from 'vue'
+import { AppState } from '../AppState'
 import { commentsService } from '../services/CommentsService'
 export default {
   name: 'Comment',
@@ -24,7 +25,8 @@ export default {
   },
   setup(props) {
     const state = reactive({
-      newComment: {}
+      newComment: {},
+      comments: computed(() => AppState.comments[props.commentProp.id])
     })
 
     return {

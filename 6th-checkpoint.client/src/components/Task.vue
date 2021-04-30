@@ -1,5 +1,5 @@
 <template>
-  <div class="col mb-3">
+  <div class="mb-3">
     <div class="">
       <button class="btn-danger" @click="deleteTask">
         Delete
@@ -39,7 +39,7 @@
         </button>
       </div>
     </form>
-    <div class="row">
+    <div class="col">
       <Comment v-for="c in state.comments" :key="c.id" :comment-prop="c" />
     </div>
   </div>

@@ -4,14 +4,12 @@ import { api } from './AxiosService'
 
 class CommentsService {
   async createComment(newComment) {
-    debugger
     await api.post('/api/comments', newComment)
     // AppState.comments[newComment.taskId].push(res.data)
     this.getComments(newComment.taskId)
   }
 
   async getComments(TaskId) {
-    console.log('hello')
     logger.log(AppState.comments)
     const res = await api.get(`/api/tasks/${TaskId}/comments`)
     AppState.comments[TaskId] = res.data

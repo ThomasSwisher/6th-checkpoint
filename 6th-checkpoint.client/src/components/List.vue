@@ -1,5 +1,5 @@
 <template>
-  <div class="car col-md-4 mb-3">
+  <div class=" col-md-4 mb-3">
     <div class="card shadow">
       <div class="card-body">
         <h4 class="card-title">
@@ -10,12 +10,12 @@
         </h4>
         <form @submit.prevent="createTask">
           <div class="form-group cust-form">
-            <label for="title">Title</label>
+            <label for="title"></label>
             <input type="text"
                    class="form-control"
                    name="title"
                    id="title"
-                   placeholder="Task..."
+                   placeholder="Name Task..."
                    v-model="state.newTask.title"
             >
             <button class="btn btn-success" type="submit">
@@ -23,7 +23,7 @@
             </button>
           </div>
         </form>
-        <div class="row">
+        <div class="row flex-direction-column justify-content-around">
           <Task v-for="t in state.tasks" :key="t.id" :task-prop="t" />
         </div>
       </div>
@@ -79,5 +79,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.btn-success {
+  width: 90px;
+  margin-right: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.btn-danger {
+  width: 76px;
+  margin-right: 17px;
+}
 
 </style>

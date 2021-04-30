@@ -1,14 +1,14 @@
 <template>
   <div class="container-fluid">
-    <div class="form-group ml-3 mt-3">
+    <div class="row form-group ml-3 mt-3">
       <form @submit.prevent="createBoard">
         <div class="form-group cust-form">
-          <label for="title">Title</label>
+          <label for="title">Create Board</label>
           <input type="text"
                  class="form-control"
                  name="title"
                  id="title"
-                 placeholder="Title..."
+                 placeholder="Name Board..."
                  v-model="state.newBoard.title"
           >
           <button class="btn btn-success" type="submit">
@@ -17,12 +17,14 @@
         </div>
       </form>
     </div>
-    <div class="row">
-      <div class="col-12" v-for="board in state.boards" :key="board.id">
+    <div class="">
+      <div class="col-12 custom" v-for="board in state.boards" :key="board.id">
         <router-link :to="{name: 'BoardPage', params: {id: board.id}}">
           {{ board.title }}
         </router-link>
-        <span @click="deleteBoard(board.id)" class="delete">--</span>
+        <button @click="deleteBoard(board.id)" class="btn custom-btn btn-danger delete">
+          -
+        </button>
       </div>
     </div>
   </div>
@@ -83,5 +85,27 @@ export default {
 }
 .delete {
   cursor: pointer;
+}
+
+label {
+  margin-right: 20px;
+}
+
+.btn-success {
+  width: 125px;
+  margin-left: 20px;
+}
+
+a {
+ color: #0087ce;
+}
+
+.custom-btn  {
+  padding: 0px 5px 0px 5px;
+  margin-left: 15px;
+}
+
+.custom {
+  margin-bottom: 10px;
 }
 </style>

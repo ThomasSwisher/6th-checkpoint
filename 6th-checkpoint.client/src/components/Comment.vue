@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-4 mb-3">
+  <div class="mb-3">
     <div class="">
       <button class="btn-danger" @click="deleteComment">
         Delete

@@ -3,12 +3,12 @@
     <div class="form-group ml-3 mt-3">
       <form @submit.prevent="createList">
         <div class="form-group cust-form">
-          <label for="title">Title</label>
+          <label for="title">Create List</label>
           <input type="text"
                  class="form-control"
                  name="title"
                  id="title"
-                 placeholder="Title..."
+                 placeholder="Name List..."
                  v-model="state.newList.title"
           >
           <button class="btn btn-success" type="submit">
@@ -17,7 +17,7 @@
         </div>
       </form>
     </div>
-    <div class="row">
+    <div class="row flex-direction-column">
       <List v-for="l in state.lists" :key="l.id" :list-prop="l" />
     </div>
   </div>
@@ -71,5 +71,19 @@ export default {
   flex-direction: row;
   align-items: center;
   width: 500px;
+}
+
+.btn-success {
+  width: 90px;
+  margin-left: 20px;
+}
+
+label {
+  margin-right: 20px;
+}
+
+.form-group {
+  max-width: 460px;
+
 }
 </style>

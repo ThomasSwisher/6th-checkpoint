@@ -20,7 +20,7 @@
            v-for="l in state.lists"
            :key="l.id"
            :list-prop="l"
-           @click="changeList(l.id)"
+           @click.prevent="changeList(l.id)"
         >{{ l.title }}</a>
       </div>
     </div>

@@ -12,6 +12,7 @@ export class TaskController extends BaseController {
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
       .post('', this.create)
       .delete('/:id', this.delete)
+      .put('/:id', this.edit)
   }
 
   async getCommentsByTaskId(req, res, next) {
@@ -43,7 +44,7 @@ export class TaskController extends BaseController {
     }
   }
 
-  async changeList(req, res, next) {
+  async edit(req, res, next) {
     try {
       req.body.id = req.params.id
       const data = await tasksService.edit(req.body)

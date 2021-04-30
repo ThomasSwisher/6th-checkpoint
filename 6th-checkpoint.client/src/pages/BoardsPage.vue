@@ -23,7 +23,7 @@
           {{ board.title }}
         </router-link>
         <button @click="deleteBoard(board.id)" class="btn custom-btn btn-danger delete">
-          -
+          Delete
         </button>
       </div>
     </div>
